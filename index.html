@@ -1,1146 +1,632 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moch Yusuf Firdaus | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: {
-                50: "#eff6ff",
-                100: "#dbeafe",
-                200: "#bfdbfe",
-                300: "#93c5fd",
-                400: "#60a5fa",
-                500: "#3b82f6",
-                600: "#2563eb",
-                700: "#1d4ed8",
-                800: "#1e40af",
-                900: "#1e3a8a",
-                950: "#172554",
-              },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moch Yusuf Firdaus | Backend Developer Portfolio</title>
+  <meta name="description" content="Portfolio website of Moch Yusuf Firdaus, a backend developer student passionate about web development and software engineering." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: "#eff6ff",
+              100: "#dbeafe",
+              200: "#bfdbfe",
+              300: "#93c5fd",
+              400: "#60a5fa",
+              500: "#3b82f6",
+              600: "#2563eb",
+              700: "#1d4ed8",
+              800: "#1e40af",
+              900: "#1e3a8a",
+              950: "#172554",
             },
           },
+          boxShadow: {
+            soft: "0 10px 30px rgba(0,0,0,0.08)",
+            darksoft: "0 10px 30px rgba(0,0,0,0.25)",
+          }
         },
-      };
-    </script>
-    <style>
-      /* Custom CSS for animations */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-padding-top: 90px;
+    }
+
+    ::selection {
+      background: rgba(37, 99, 235, 0.18);
+      color: inherit;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .dark .glass {
+      background: rgba(2, 6, 23, 0.75);
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #2563eb, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      margin: 12px auto 0;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #2563eb, #60a5fa);
+    }
+
+    .project-card,
+    .skill-card,
+    .info-card {
+      transition: all 0.35s ease;
+    }
+
+    .project-card:hover,
+    .skill-card:hover,
+    .info-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .project-card img {
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    input,
+    textarea,
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @media (max-width: 640px) {
+      .section-title::after {
+        width: 60px;
+        height: 3px;
+        margin-top: 10px;
       }
+    }
+  </style>
+</head>
 
-      .animate-fadeIn {
-        animation: fadeIn 0.6s ease-out forwards;
-      }
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
 
-      .delay-100 {
-        animation-delay: 0.1s;
-      }
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-50 border-b border-slate-200/70 dark:border-slate-800 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="#home" class="text-2xl font-black tracking-tight gradient-text">MYF</a>
 
-      .delay-200 {
-        animation-delay: 0.2s;
-      }
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#home" class="hover:text-primary-600 transition">Home</a>
+        <a href="#about" class="hover:text-primary-600 transition">About</a>
+        <a href="#skills" class="hover:text-primary-600 transition">Skills</a>
+        <a href="#projects" class="hover:text-primary-600 transition">Projects</a>
+        <a href="#contact" class="hover:text-primary-600 transition">Contact</a>
+      </nav>
 
-      .delay-300 {
-        animation-delay: 0.3s;
-      }
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:scale-105 transition">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
 
-      .delay-400 {
-        animation-delay: 0.4s;
-      }
-
-      .delay-500 {
-        animation-delay: 0.5s;
-      }
-
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-
-      .dark ::-webkit-scrollbar-track {
-        background: #1e293b;
-      }
-
-      .dark ::-webkit-scrollbar-thumb {
-        background: #64748b;
-      }
-
-      .dark ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-
-      /* Hamburger menu animation */
-      .hamburger-line {
-        transition: all 0.3s ease;
-      }
-
-      .hamburger-active > span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-
-      .hamburger-active > span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger-active > span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
-
-      /* Project card hover effect */
-      .project-card {
-        transition: all 0.3s ease;
-        transform-style: preserve-3d;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .dark .project-card:hover {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      }
-    </style>
-  </head>
-  <body
-    class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans"
-  >
-    <!-- Header/Navigation -->
-    <header
-      class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 shadow-sm"
-    >
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex justify-between items-center">
-          <a
-            href="#home"
-            class="text-2xl font-bold text-primary-600 dark:text-primary-400"
-          >
-            <span class="animate-fadeIn">MYF</span>
-          </a>
-
-          <!-- Desktop Navigation -->
-          <nav class="hidden md:flex space-x-8">
-            <a href="#home" class="nav-link animate-fadeIn delay-100">Home</a>
-            <a href="#about" class="nav-link animate-fadeIn delay-200">About</a>
-            <a href="#skills" class="nav-link animate-fadeIn delay-300"
-              >Skills</a
-            >
-            <a href="#projects" class="nav-link animate-fadeIn delay-400"
-              >Projects</a
-            >
-            <a href="#contact" class="nav-link animate-fadeIn delay-500"
-              >Contact</a
-            >
-          </nav>
-
-          <!-- Theme Toggle -->
-          <button
-            id="theme-toggle"
-            class="p-2 rounded-full focus:outline-none animate-fadeIn delay-500"
-          >
-            <i
-              id="sun-icon"
-              class="fas fa-sun text-yellow-400 hidden dark:block"
-            ></i>
-            <i id="moon-icon" class="fas fa-moon text-gray-700 dark:hidden"></i>
-          </button>
-
-          <!-- Mobile Menu Button -->
-          <button
-            id="mobile-menu-button"
-            class="md:hidden flex flex-col h-8 w-8 justify-center items-center group"
-          >
-            <span
-              class="hamburger-line bg-gray-800 dark:bg-white block w-6 h-0.5 mb-1.5 transition-all"
-            ></span>
-            <span
-              class="hamburger-line bg-gray-800 dark:bg-white block w-6 h-0.5 mb-1.5 transition-all"
-            ></span>
-            <span
-              class="hamburger-line bg-gray-800 dark:bg-white block w-6 h-0.5 transition-all"
-            ></span>
-          </button>
-        </div>
+        <button id="mobile-menu-button" class="md:hidden w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-lg">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
+    </div>
 
-      <!-- Mobile Navigation -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg"
-      >
-        <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-          <a href="#home" class="nav-link-mobile">Home</a>
-          <a href="#about" class="nav-link-mobile">About</a>
-          <a href="#skills" class="nav-link-mobile">Skills</a>
-          <a href="#projects" class="nav-link-mobile">Projects</a>
-          <a href="#contact" class="nav-link-mobile">Contact</a>
-        </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 sm:px-6 pb-4">
+      <div class="flex flex-col gap-3 text-sm font-medium bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-soft dark:shadow-darksoft">
+        <a href="#home" class="mobile-link hover:text-primary-600 transition">Home</a>
+        <a href="#about" class="mobile-link hover:text-primary-600 transition">About</a>
+        <a href="#skills" class="mobile-link hover:text-primary-600 transition">Skills</a>
+        <a href="#projects" class="mobile-link hover:text-primary-600 transition">Projects</a>
+        <a href="#contact" class="mobile-link hover:text-primary-600 transition">Contact</a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20">
-      <div class="container mx-auto px-6 py-12 md:py-24">
-        <div class="flex flex-col md:flex-row items-center">
-          <div class="md:w-1/2 mb-12 md:mb-0 animate-fadeIn">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">
-              Hi, I'm
-              <span class="text-primary-600 dark:text-primary-400"
-                >Moch Yusuf Firdaus</span
-              >
-            </h1>
-            <h2
-              class="text-2xl md:text-3xl font-semibold mb-6 text-gray-600 dark:text-gray-300"
-            >
-              Software Engineer
-            </h2>
-            <p class="text-lg mb-8 text-gray-700 dark:text-gray-300 max-w-lg">
-              Currently learning to become a professional software engineer, one
-              project at a time.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#contact"
-                class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg"
-              >
-                Contact Me
-              </a>
-              <a
-                href="#projects"
-                class="border-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400 hover:bg-primary-50 dark:hover:bg-gray-800 px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                View Work
-              </a>
-            </div>
-          </div>
-          <div class="md:w-1/2 flex justify-center animate-fadeIn delay-100">
-            <div
-              class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400 shadow-xl"
-            >
-              <img
-                src="image/2049893.jpg"
-                alt="YUSUF"
-                class="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Hero -->
+  <section id="home" class="min-h-screen flex items-center pt-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
-<<<<<<< HEAD
-      <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span
-            class="border-b-4 border-primary-500 dark:border-primary-400 pb-2"
-            >About Me</span
-          >
-        </h2>
-
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <div class="md:w-1/3 flex justify-center">
-            <div
-              class="relative w-64 h-64 rounded-lg overflow-hidden shadow-xl"
-            >
-              <img
-                src="image/yusuflulus.jpg"
-                alt="Yusuf"
-                class="w-full h-full object-cover"
-              />
-=======
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="border-b-4 border-primary-500 dark:border-primary-400 pb-2">About Me</span>
-            </h2>
-            
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/3 flex justify-center">
-                    <div class="relative w-64 h-64 rounded-lg overflow-hidden shadow-xl">
-                        <img src="image/yusuflulus.jpg" 
-                             alt="Yusuf" 
-                             class="w-full h-full object-cover">
-                    </div>
-                </div>
-                
-                <div class="md:w-2/3">
-                    <h3 class="text-2xl font-semibold mb-4">Who am I?</h3>
-                    <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
-                        Hello! Let me introduce myself. My name is Moch Yusuf Firdaus, a student of Grade 11 RPL 1 (Software Engineering) at SMK Plus Pelita Nusantara.
-                    </p>
-                    <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
-                        I really like technology and automotive. My interest in these fields began when I was in junior high school, and it has continued to grow ever since.
-I enjoy exploring how things work — whether it’s building software or understanding the mechanics behind vehicles.
-This passion has motivated me to learn more about backend development and deepen my knowledge in the world of technology.
-                    </p>
-                    <p class="text-lg mb-8 text-gray-700 dark:text-gray-300">
-                        I will keep learning and growing, aiming to become a skilled backend developer who can create meaningful impact.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-map-marker-alt text-primary-600 dark:text-primary-400 mr-2"></i>
-                            <span>West Java, Indonesian</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-phone text-primary-600 dark:text-primary-400 mr-2"></i>
-                            <span>(+62) 821-2241-5812</span>
-                        </div>
-                        <div class="flex items-center">
-                           <img src="image/penuslogo.png" alt="penus" class="w-6 h-6 mr-2 inline">
-                            <span>Software Engineering</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-language text-primary-600 dark:text-primary-400 mr-2"></i>
-                            <span>Indonesian, English</span>
-                        </div>
-                    </div>
-                </div>
->>>>>>> 7bfdbbcadc6a73df72eb0b3f6baf0268b8ffbcb3
-            </div>
-          </div>
-
-          <div class="md:w-2/3">
-            <h3 class="text-2xl font-semibold mb-4">Who am I?</h3>
-            <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
-              Hello! Let me introduce myself. My name is Moch Yusuf Firdaus, a
-              student of Grade 11 RPL 1 (Software Engineering) at SMK Plus
-              Pelita Nusantara.
-            </p>
-            <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
-              I really like technology and automotive. My interest in these
-              fields began when I was in junior high school, and it has
-              continued to grow ever since. I enjoy exploring how things work —
-              whether it’s building software or understanding the mechanics
-              behind vehicles. This passion has motivated me to learn more about
-              backend development and deepen my knowledge in the world of
-              technology.
-            </p>
-            <p class="text-lg mb-8 text-gray-700 dark:text-gray-300">
-              I will keep learning and growing, aiming to become a skilled
-              backend developer who can create meaningful impact.
-            </p>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div class="flex items-center">
-                <i
-                  class="fas fa-map-marker-alt text-primary-600 dark:text-primary-400 mr-2"
-                ></i>
-                <span>West Java, Indonesian</span>
-              </div>
-              <div class="flex items-center">
-                <i
-                  class="fas fa-phone text-primary-600 dark:text-primary-400 mr-2"
-                ></i>
-                <span>(+62) 821-2241-5812</span>
-              </div>
-              <div class="flex items-center">
-                <img
-                  src="image/penuslogo.png"
-                  alt="penus"
-                  class="w-6 h-6 mr-2 inline"
-                />
-                <span>Software Engineering</span>
-              </div>
-              <div class="flex items-center">
-                <i
-                  class="fas fa-language text-primary-600 dark:text-primary-400 mr-2"
-                ></i>
-                <span>Indonesian, English</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20">
-      <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span
-            class="border-b-4 border-primary-500 dark:border-primary-400 pb-2"
-            >My Skills</span
-          >
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <!-- Frontend Skills -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-            <div class="text-center mb-4">
-              <i
-                class="fas fa-laptop-code text-4xl text-primary-600 dark:text-primary-400 mb-3"
-              ></i>
-              <h3 class="text-xl font-semibold">Frontend</h3>
-            </div>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <i class="fab fa-html5 text-orange-500 mr-2"></i>
-                <span>HTML5</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fab fa-css3-alt text-blue-400 mr-2"></i>
-                <span>CSS3</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fab fa-bootstrap text-purple-500 mr-2"></i>
-                <span>Bootstrap</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Backend Skills -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-            <div class="text-center mb-4">
-              <i
-                class="fas fa-server text-4xl text-primary-600 dark:text-primary-400 mb-3"
-              ></i>
-              <h3 class="text-xl font-semibold">Backend</h3>
-            </div>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <i class="fab fa-python text-blue-600 mr-2"></i>
-                <span>Python</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-database text-purple-300 mr-2"></i>
-                <span>Basic PHP</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-database text-blue-700 mr-2"></i>
-                <span>Basic MySQL</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-fire text-red-500 mr-2"></i>
-                <span>Basic Laravel</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-database text-yellow-500 mr-2"></i>
-                <span>PHP MyAdmin</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Tools & Platforms -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-            <div class="text-center mb-4">
-              <i
-                class="fas fa-tools text-4xl text-primary-600 dark:text-primary-400 mb-3"
-              ></i>
-              <h3 class="text-xl font-semibold">Tools</h3>
-            </div>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <i class="fab fa-git-alt text-orange-600 mr-2"></i>
-                <span>Git</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fab fa-github text-gray-800 dark:text-gray-200 mr-2"
-                ></i>
-                <span>GitHub</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fab fa-figma text-purple-500 mr-2"></i>
-                <span>Figma</span>
-              </li>
-              <li class="flex items-center">
-                <i
-                  class="fas fa-terminal text-gray-600 dark:text-gray-300 mr-2"
-                ></i>
-                <span>CLI</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Soft Skills -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-            <div class="text-center mb-4">
-              <i
-                class="fas fa-brain text-4xl text-primary-600 dark:text-primary-400 mb-3"
-              ></i>
-              <h3 class="text-xl font-semibold">Soft Skills</h3>
-            </div>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <i class="fas fa-comments text-blue-400 mr-2"></i>
-                <span>Communication</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-users text-green-500 mr-2"></i>
-                <span>Teamwork</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
-                <span>Problem Solving</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-clock text-purple-500 mr-2"></i>
-                <span>Time Management</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-tasks text-blue-600 mr-2"></i>
-                <span>Project Management</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-book text-teal-500 mr-2"></i>
-                <span>Continuous Learning</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
-      <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span
-            class="border-b-4 border-primary-500 dark:border-primary-400 pb-2"
-            >My Projects</span
-          >
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Project 1 -->
-          <div
-            class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md transition-all duration-300"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="image/klktr.png"
-                alt="Kalkulator"
-                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Digital Calculator</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">
-                I created a web-based digital calculator using HTML, CSS, and
-                JavaScript. The interface is minimalist, responsive, and
-                user-friendly with a modern dark mode design.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-3 py-1 rounded-full"
-                  >CSS</span
-                >
-                <span
-                  class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-3 py-1 rounded-full"
-                  >HTML</span
-                >
-                <span
-                  class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs px-3 py-1 rounded-full"
-                  >Javascript</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://kalkulator-alakadar.vercel.app/"
-                  class="text-primary-600 dark:text-primary-400 hover:underline flex items-center"
-                >
-                  <i class="fas fa-external-link-alt mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/yusufajaa13/Kalkulator-alakadar"
-                  class="text-gray-600 dark:text-gray-400 hover:underline flex items-center"
-                >
-                  <i class="fab fa-github mr-1"></i> Code
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2 -->
-          <div
-            class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md transition-all duration-300"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="image/Jam.png"
-                alt="Social Media App"
-                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Digital Clock</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">
-                This project is a responsive digital clock built using HTML,
-                CSS, and JavaScript, designed with a modern, minimalist
-                aesthetic and local language support
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-3 py-1 rounded-full"
-                  >CSS</span
-                >
-                <span
-                  class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-3 py-1 rounded-full"
-                  >HTML</span
-                >
-                <span
-                  class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs px-3 py-1 rounded-full"
-                  >Javascript</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://jamdigital-ten.vercel.app/"
-                  class="text-primary-600 dark:text-primary-400 hover:underline flex items-center"
-                >
-                  <i class="fas fa-external-link-alt mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/yusufajaa13/Jam-digital-sederhana"
-                  class="text-gray-600 dark:text-gray-400 hover:underline flex items-center"
-                >
-                  <i class="fab fa-github mr-1"></i> Code
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div
-            class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md transition-all duration-300"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="image/qrcode.png"
-                alt="pyqrcode"
-                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">QR Code Generator</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">
-                This project is a simple and functional QR Code Generator built
-                using Python. It allows users to easily convert any text, URL,
-                or data into a scannable QR code image. The program utilizes the
-                qrcode library in Python and optionally integrates with tkinter
-                for a graphical user interface (GUI).
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-300 dark:bg-blue-700 text-blue-800 dark:text-blue-200 text-xs px-3 py-1 rounded-full"
-                  >Python</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://github.com/yusufajaa13/QRcode-Generator"
-                  class="text-gray-600 dark:text-gray-400 hover:underline flex items-center"
-                >
-                  <i class="fab fa-github mr-1"></i> Code
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a
-            href="#"
-            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700"
-          >
-            View All Projects
-            <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-      <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span
-            class="border-b-4 border-primary-500 dark:border-primary-400 pb-2"
-            >Get In Touch</span
-          >
-        </h2>
-
-        <div class="flex flex-col md:flex-row gap-12">
-          <div class="md:w-1/2">
-            <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-            <p class="text-lg mb-8 text-gray-700 dark:text-gray-300">
-              Thank you so much for visiting my portfolio website! If you have
-              any questions or would like to connect, feel free to reach out 😄
-            </p>
-
-            <div class="space-y-6">
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center"
-                >
-                  <i
-                    class="fas fa-map-marker-alt text-primary-600 dark:text-primary-400"
-                  ></i>
-                </div>
-                <div class="ml-4">
-                  <h4 class="text-lg font-medium">Location</h4>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    West Java, Indonesian
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center"
-                >
-                  <i
-                    class="fas fa-envelope text-primary-600 dark:text-primary-400"
-                  ></i>
-                </div>
-                <div class="ml-4">
-                  <h4 class="text-lg font-medium">Email</h4>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    mochyusuffirdaus18@gmail.com
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center"
-                >
-                  <i
-                    class="fas fa-phone text-primary-600 dark:text-primary-400"
-                  ></i>
-                </div>
-                <div class="ml-4">
-                  <h4 class="text-lg font-medium">Phone</h4>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    (+62) 821 2241 5812
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-8">
-              <h4 class="text-lg font-medium mb-4">Follow Me</h4>
-              <div class="flex space-x-4">
-                <a
-                  href="https://github.com/yusufajaa13"
-                  class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
-                >
-                  <i class="fab fa-github text-gray-700 dark:text-gray-300"></i>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/moch-yusuf-firdaus-196039378?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
-                >
-                  <i
-                    class="fab fa-linkedin-in text-gray-700 dark:text-gray-300"
-                  ></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/ysfajaa12_/"
-                  class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
-                >
-                  <i
-                    class="fab fa-instagram text-gray-700 dark:text-gray-300"
-                  ></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="md:w-1/2">
-            <form action="https://api.web3forms.com/submit" method="POST">
-              <input
-                type="hidden"
-                name="access_key"
-                value="443f57fb-92f5-464d-8a57-a8dcfc6d1a5f"
-              />
-              <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                  >Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="Your Name"
-                />
-              </div>
-
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  for="subject"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                  >Subject</label
-                >
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="Subject"
-                />
-              </div>
-
-              <div>
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                  >Message</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white"
-                  placeholder="Your message here..."
-                ></textarea>
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-lg shadow-md transition-colors"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-      <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-6 md:mb-0">
-            <a href="#" class="text-2xl font-bold text-primary-400"
-              >Moch Yusuf Firdaus</a
-            >
-            <p class="mt-2 text-gray-400">Software Engineer</p>
-          </div>
-
-          <div
-            class="flex flex-col md:flex-row md:space-x-12 space-y-4 md:space-y-0"
-          >
-            <div>
-              <h4 class="text-lg font-semibold mb-3">Quick Links</h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="#home"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Home</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#about"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >About</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#skills"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Skills</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#projects"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Projects</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Contact</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="text-lg font-semibold mb-3">Services</h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Web Development</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >App Development</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >UI/UX Design</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Consulting</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 class="text-lg font-semibold mb-3">Legal</h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Terms of Service</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-white transition-colors"
-                    >Cookie Policy</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-gray-400 mb-4 md:mb-0">
-            © 2025 PortYusuf. All rights reserved.
+        <!-- Left -->
+        <div class="reveal order-2 lg:order-1">
+          <p class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/40 dark:text-primary-300 text-sm font-medium mb-4">
+            Backend Developer Student
           </p>
 
-          <div class="flex space-x-6">
-            <a
-              href="https://github.com/yusufajaa13"
-              class="text-gray-400 hover:text-white transition-colors"
-            >
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 text-sm font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Available for learning & collaboration
+            </span>
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 text-sm font-medium">
+              PHP • MySQL • Laravel • Python
+            </span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6">
+            Hi, I'm <span class="gradient-text">Moch Yusuf Firdaus</span>
+          </h1>
+
+          <p class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mb-8 leading-relaxed">
+            I am a software engineering student who is passionate about building clean, structured, and functional web applications with a strong interest in backend development.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="#projects" class="px-6 py-3 rounded-2xl bg-primary-600 text-white font-semibold shadow-lg hover:bg-primary-700 transition">
+              View Projects
+            </a>
+            <a href="#contact" class="px-6 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 font-semibold hover:bg-slate-100 dark:hover:bg-slate-900 transition">
+              Contact Me
+            </a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6 mt-10 max-w-lg">
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-soft dark:shadow-darksoft text-center">
+              <p class="text-2xl font-black text-slate-900 dark:text-white">3+</p>
+              <span class="text-sm text-slate-600 dark:text-slate-400">Projects</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-soft dark:shadow-darksoft text-center">
+              <p class="text-2xl font-black text-slate-900 dark:text-white">5+</p>
+              <span class="text-sm text-slate-600 dark:text-slate-400">Skills</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-soft dark:shadow-darksoft text-center">
+              <p class="text-2xl font-black text-slate-900 dark:text-white">100%</p>
+              <span class="text-sm text-slate-600 dark:text-slate-400">Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="flex justify-center reveal order-1 lg:order-2">
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-tr from-primary-500 to-blue-300 blur-3xl opacity-20 rounded-full"></div>
+
+            <img
+              src="image/2049893.jpg"
+              alt="Moch Yusuf Firdaus"
+              class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 object-cover rounded-3xl border border-white/60 dark:border-slate-800 shadow-2xl"
+            />
+
+            <div class="absolute -bottom-5 -left-5 hidden sm:flex items-center gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 shadow-soft dark:shadow-darksoft">
+              <div class="w-11 h-11 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600">
+                <i class="fas fa-server"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold">Backend Focused</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Structured & Clean Logic</p>
+              </div>
+            </div>
+
+            <div class="absolute -top-5 -right-5 hidden sm:flex items-center gap-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-4 py-3 shadow-soft dark:shadow-darksoft">
+              <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600">
+                <i class="fas fa-code"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold">Always Learning</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Student Developer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <h2 class="section-title text-3xl md:text-4xl font-bold">About Me</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          A brief introduction about who I am and what I’m currently focusing on.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <img
+            src="image/yusuflulus.jpg"
+            alt="Yusuf"
+            class="w-full max-w-md mx-auto rounded-3xl shadow-soft dark:shadow-darksoft object-cover border border-slate-200 dark:border-slate-800"
+          />
+        </div>
+
+        <div class="reveal">
+          <h3 class="text-2xl font-bold mb-6">Who am I?</h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            Hello! My name is Moch Yusuf Firdaus. I am a Grade 11 Software Engineering student at SMK Plus Pelita Nusantara.
+          </p>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+            I have a strong interest in technology, web development, and backend systems. I enjoy learning how applications work behind the scenes and continuously improving my coding skills through personal projects.
+          </p>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+            My goal is to become a skilled backend developer who can build reliable, scalable, and meaningful digital solutions.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="info-card p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <p class="font-semibold">Location</p>
+              <p class="text-slate-600 dark:text-slate-400">West Java, Indonesia</p>
+            </div>
+            <div class="info-card p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <p class="font-semibold">Focus</p>
+              <p class="text-slate-600 dark:text-slate-400">Backend Development</p>
+            </div>
+            <div class="info-card p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <p class="font-semibold">Languages</p>
+              <p class="text-slate-600 dark:text-slate-400">Indonesian, English</p>
+            </div>
+            <div class="info-card p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <p class="font-semibold">Education</p>
+              <p class="text-slate-600 dark:text-slate-400">Software Engineering</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-16 sm:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <h2 class="section-title text-3xl md:text-4xl font-bold">My Skills</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Technologies and tools I use while learning and building projects.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+        <div class="skill-card reveal bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-6 rounded-3xl shadow-soft dark:shadow-darksoft hover:shadow-xl transition duration-300">
+          <i class="fas fa-code text-3xl text-primary-600 mb-4"></i>
+          <h3 class="text-xl font-bold mb-4">Frontend</h3>
+          <ul class="space-y-2 text-slate-600 dark:text-slate-300">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>Tailwind CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-6 rounded-3xl shadow-soft dark:shadow-darksoft hover:shadow-xl transition duration-300">
+          <i class="fas fa-server text-3xl text-primary-600 mb-4"></i>
+          <h3 class="text-xl font-bold mb-4">Backend</h3>
+          <ul class="space-y-2 text-slate-600 dark:text-slate-300">
+            <li>PHP (Basic)</li>
+            <li>MySQL (Basic)</li>
+            <li>Laravel (Basic)</li>
+            <li>Python</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-6 rounded-3xl shadow-soft dark:shadow-darksoft hover:shadow-xl transition duration-300">
+          <i class="fas fa-tools text-3xl text-primary-600 mb-4"></i>
+          <h3 class="text-xl font-bold mb-4">Tools</h3>
+          <ul class="space-y-2 text-slate-600 dark:text-slate-300">
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>Figma</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 p-6 rounded-3xl shadow-soft dark:shadow-darksoft hover:shadow-xl transition duration-300">
+          <i class="fas fa-brain text-3xl text-primary-600 mb-4"></i>
+          <h3 class="text-xl font-bold mb-4">Soft Skills</h3>
+          <ul class="space-y-2 text-slate-600 dark:text-slate-300">
+            <li>Communication</li>
+            <li>Problem Solving</li>
+            <li>Time Management</li>
+            <li>Continuous Learning</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <h2 class="section-title text-3xl md:text-4xl font-bold">Projects</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          A selection of projects I’ve built to practice and improve my development skills.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+        <!-- Project 1 -->
+        <div class="project-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-soft dark:shadow-darksoft hover:shadow-2xl transition duration-300">
+          <img src="image/klktr.png" alt="Digital Calculator" class="w-full h-48 sm:h-52 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">Digital Calculator</h3>
+            <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+              A responsive calculator built with HTML, CSS, and JavaScript featuring a clean and modern user interface.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700">HTML</span>
+              <span class="px-3 py-1 text-xs rounded-full bg-cyan-100 text-cyan-700">CSS</span>
+              <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700">JavaScript</span>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://kalkulator-alakadar.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 transition">
+                Live Demo
+              </a>
+              <a href="https://github.com/yusufajaa13/Kalkulator-alakadar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-soft dark:shadow-darksoft hover:shadow-2xl transition duration-300">
+          <img src="image/Jam.png" alt="Digital Clock" class="w-full h-48 sm:h-52 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">Digital Clock</h3>
+            <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+              A simple and responsive digital clock with a clean interface and real-time functionality using JavaScript.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700">HTML</span>
+              <span class="px-3 py-1 text-xs rounded-full bg-cyan-100 text-cyan-700">CSS</span>
+              <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700">JavaScript</span>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://jamdigital-ten.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 transition">
+                Live Demo
+              </a>
+              <a href="https://github.com/yusufajaa13/Jam-digital-sederhana" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-soft dark:shadow-darksoft hover:shadow-2xl transition duration-300">
+          <img src="image/qrcode.png" alt="QR Code Generator" class="w-full h-48 sm:h-52 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">QR Code Generator</h3>
+            <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+              A Python-based QR Code Generator that converts text or URLs into scannable QR codes efficiently.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="px-3 py-1 text-xs rounded-full bg-indigo-100 text-indigo-700">Python</span>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://github.com/yusufajaa13/QRcode-Generator" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 sm:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <h2 class="section-title text-3xl md:text-4xl font-bold">Get In Touch</h2>
+        <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          If you’d like to connect, collaborate, or simply say hello, feel free to reach out.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 rounded-3xl shadow-soft dark:shadow-darksoft">
+          <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+          <div class="space-y-5 text-slate-600 dark:text-slate-300">
+            <p><strong>Email:</strong> mochyusuffirdaus18@gmail.com</p>
+            <p><strong>Phone:</strong> (+62) 821 2241 5812</p>
+            <p><strong>Location:</strong> West Java, Indonesia</p>
+          </div>
+
+          <div class="flex gap-4 mt-8">
+            <a href="https://github.com/yusufajaa13" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:scale-105 transition">
               <i class="fab fa-github"></i>
             </a>
-            <a
-              href="https://www.linkedin.com/in/moch-yusuf-firdaus-196039378?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-              class="text-gray-400 hover:text-white transition-colors"
-            >
+            <a href="https://www.linkedin.com/in/moch-yusuf-firdaus-196039378" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:scale-105 transition">
               <i class="fab fa-linkedin-in"></i>
             </a>
-            <a
-              href="https://www.instagram.com/ysfajaa12_/"
-              class="text-gray-400 hover:text-white transition-colors"
-            >
+            <a href="https://www.instagram.com/ysfajaa12_/" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:scale-105 transition">
               <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>
+
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 rounded-3xl shadow-soft dark:shadow-darksoft">
+          <form class="space-y-5" id="contact-form">
+            <div>
+              <label class="block mb-2 font-medium">Name</label>
+              <input type="text" placeholder="Your Name"
+                class="w-full px-4 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition">
+            </div>
+
+            <div>
+              <label class="block mb-2 font-medium">Email</label>
+              <input type="email" placeholder="your@email.com"
+                class="w-full px-4 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition">
+            </div>
+
+            <div>
+              <label class="block mb-2 font-medium">Message</label>
+              <textarea rows="5" placeholder="Write your message..."
+                class="w-full px-4 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition"></textarea>
+            </div>
+
+            <button type="submit"
+              class="w-full py-3 rounded-2xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition">
+              Send Message
+            </button>
+          </form>
+        </div>
+
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- Back to Top Button -->
-    <button
-      id="back-to-top"
-      class="fixed bottom-8 right-8 bg-primary-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300"
-    >
-      <i class="fas fa-arrow-up"></i>
-    </button>
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center text-slate-500 dark:text-slate-400">
+    <p>© 2026 Moch Yusuf Firdaus. All rights reserved.</p>
+  </footer>
 
-    <script>
-      // Mobile Menu Toggle
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
+  <!-- Back to Top -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary-600 text-white shadow-lg hidden hover:bg-primary-700 transition">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-      mobileMenuButton.addEventListener("click", () => {
-        mobileMenuButton.classList.toggle("hamburger-active");
-        mobileMenu.classList.toggle("hidden");
+  <!-- Toast -->
+  <div id="toast" class="fixed top-24 right-4 translate-x-[150%] transition-all duration-500 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl z-[999]">
+    Message sent successfully!
+  </div>
+
+  <script>
+    // Mobile Menu
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    document.querySelectorAll(".mobile-link").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
       });
+    });
 
-      // Close mobile menu when clicking a link
-      document.querySelectorAll(".nav-link-mobile").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenuButton.classList.remove("hamburger-active");
-          mobileMenu.classList.add("hidden");
-        });
-      });
+    // Theme Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
 
-      // Dark/Light Mode Toggle
-      const themeToggle = document.getElementById("theme-toggle");
-      const sunIcon = document.getElementById("sun-icon");
-      const moonIcon = document.getElementById("moon-icon");
+    if (
+      localStorage.getItem("theme") === "dark" ||
+      (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+      themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
 
-      // Check for saved user preference or use system preference
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        sunIcon.classList.remove("hidden");
-        moonIcon.classList.add("hidden");
+    themeToggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+
+      if (document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
       } else {
-        document.documentElement.classList.remove("dark");
-        sunIcon.classList.add("hidden");
-        moonIcon.classList.remove("hidden");
+        localStorage.setItem("theme", "light");
+        themeIcon.classList.replace("fa-sun", "fa-moon");
       }
+    });
 
-      themeToggle.addEventListener("click", () => {
-        // Toggle icons
-        sunIcon.classList.toggle("hidden");
-        moonIcon.classList.toggle("hidden");
+    // Back To Top
+    const backToTop = document.getElementById("back-to-top");
 
-        // If set via local storage previously
-        if (localStorage.getItem("color-theme")) {
-          if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          }
-        } else {
-          // If NOT set via local storage previously
-          if (document.documentElement.classList.contains("dark")) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          }
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.remove("hidden");
+      } else {
+        backToTop.classList.add("hidden");
+      }
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Reveal Animation
+    const reveals = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      reveals.forEach((el) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const visiblePoint = 100;
+
+        if (elementTop < windowHeight - visiblePoint) {
+          el.classList.add("active");
         }
       });
+    }
 
-      // Back to Top Button
-      const backToTopButton = document.getElementById("back-to-top");
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
 
-      window.addEventListener("scroll", () => {
-        if (window.pageYOffset > 300) {
-          backToTopButton.classList.remove("opacity-0", "invisible");
-          backToTopButton.classList.add("opacity-100", "visible");
-        } else {
-          backToTopButton.classList.remove("opacity-100", "visible");
-          backToTopButton.classList.add("opacity-0", "invisible");
-        }
-      });
+    // Fake Contact Form Toast
+    const contactForm = document.getElementById("contact-form");
+    const toast = document.getElementById("toast");
 
-      backToTopButton.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
+    contactForm.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+      toast.classList.remove("translate-x-[150%]");
+      toast.classList.add("translate-x-0");
 
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
+      setTimeout(() => {
+        toast.classList.remove("translate-x-0");
+        toast.classList.add("translate-x-[150%]");
+      }, 2500);
 
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: "smooth",
-            });
-          }
-        });
-      });
-
-      // Add animation class when elements come into view
-      const animateOnScroll = () => {
-        const elements = document.querySelectorAll(".animate-fadeIn");
-
-        elements.forEach((element) => {
-          const elementPosition = element.getBoundingClientRect().top;
-          const screenPosition = window.innerHeight / 1.2;
-
-          if (elementPosition < screenPosition) {
-            element.classList.add("animate-fadeIn");
-          }
-        });
-      };
-
-      // Run once on page load
-      animateOnScroll();
-
-      // Run on scroll
-      window.addEventListener("scroll", animateOnScroll);
-    </script>
-<<<<<<< HEAD
-  </body>
-=======
+      contactForm.reset();
+    });
+  </script>
 </body>
->>>>>>> 7bfdbbcadc6a73df72eb0b3f6baf0268b8ffbcb3
 </html>
